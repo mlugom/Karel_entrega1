@@ -21,25 +21,25 @@ public class Ejercicio1{
     //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
     estudiante = new Robot(ciudad,1, 1, Direction.SOUTH,10);
 
-    boolean bool_fin = false;
-    boolean bool_num = false;
+    boolean bool_fin = false; //Éste booleano nos indicará si ya se encontró el Thing de "fin"
+    boolean bool_num = false; //Este booleano nos indicará que después de leer un numeral todo se considerará como número
 
-    boolean[] arr_temp = new boolean[6]; //Se hace el movimiento del primer cajón aparte para ver si se leerá un número o una palabra
+    boolean[] arr_temp = new boolean[6]; //Éste arreglo se redifinirá cada que se entre en el ciclo, y tomará el "valor del arreglo" de la letra que el robot lea
 
     while(!bool_fin){ //Se ejecuta hasta que encuentra un Thing en la posición de fin
-      arr_temp = mover_en_cajon();
+      arr_temp = mover_en_cajon(); //Al arreglo temporal se le asigna el arreglo de la letra
       if(is_arr_numeral(arr_temp)){ //Si aparece un numeral, todo lo siguiente que aparezca será considerado número
         bool_num = true;
       }
-      revisa_arreglo(arr_temp, bool_num);
-      bool_fin = mover_entre_cajones(bool_fin);
+      revisa_arreglo(arr_temp, bool_num); //Se revisa con la matriz grande a qué equivale el arreglo de la letra, y se hace la impresión correspondiente
+      bool_fin = mover_entre_cajones(bool_fin); //El booleano se vuelve verdadero si mientras se mueve entre cajones se encuentra el Thing de fin
     }
 
 	}
   public static boolean[] mover_en_cajon(){ //Recibe hacia abajo y en la primera posición del arreglo; entrega hacia arriba en la posición "6" (1 afuera del cajón)
     boolean[] arr_Things = new boolean[6];
     for(int ii=0; ii<=2; ii++){
-      arr_Things[ii] = estudiante.canPickThing();
+      arr_Things[ii] = estudiante.canPickThing(); //Si hay Thing, el elemento del arreglo se hace true
       estudiante.move();
     }
     estudiante.turnLeft();
@@ -50,7 +50,7 @@ public class Ejercicio1{
       arr_Things[ii] = estudiante.canPickThing();
       estudiante.move();
     }
-    return arr_Things;
+    return arr_Things; //Se retorna el arreglo, ya con "la letra que representa"
   }
   public static boolean mover_entre_cajones(boolean bool_fin){
     for(int ii=1; ii<=3; ii++){
@@ -65,7 +65,7 @@ public class Ejercicio1{
     return bool_fin;
   }
   public static void revisa_arreglo(boolean[] arr_Things, boolean bool_num){
-    boolean matrix_letras[][] = new boolean[][]{
+    boolean matrix_letras[][] = new boolean[][]{ //Cada fila representará una letra/caracter
       {true, false, false, false, false, false}, //a
       {true, true, false, false, false, false}, //b
       {true, false, false, false, false, true}, //c
@@ -130,7 +130,7 @@ public class Ejercicio1{
           break;
         }
       }
-      switch(pos_letra){
+      switch(pos_letra){ //La impresión depende de con qué posición de la matriz grande se encontró la equivalencia de la letra
         case 0:
           System.out.print('a');
           break;
@@ -211,7 +211,7 @@ public class Ejercicio1{
           break;
       }
     }
-    if(bool_num){ //La palabra inicia con el numeral, por lo que se imprimirá un número
+    if(bool_num){ //La palabra/semipalabra inicia con el numeral, por lo que se imprimirá un número
       for(int ii=26; ii<=47; ii++){
         boolean bool_letra = true;
         for(int jj=0; jj<=5; jj++){ //Revisa si todos los elementos de una fila de la matriz coinciden con todos los elementos del arreglo que "retornó el robot" (Son la misma letra)
@@ -294,7 +294,7 @@ public class Ejercicio1{
       }
     }
   }
-  public static boolean is_arr_numeral(boolean[] arr_Things){
+  public static boolean is_arr_numeral(boolean[] arr_Things){ //Ésta función retorna verdadero si el arreglo que se utilizó en el argumento corresponde al '#' numeral
     boolean[] arr_numeral = {false, false, true, true, true, true};
     boolean bool_is_numeral = true;
     for(int ii=0; ii<=5; ii++){
