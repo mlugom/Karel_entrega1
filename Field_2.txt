@@ -1,0 +1,53 @@
+# PALABRA: #2018
+
+Harvest a Field
+# first street, first avenue, num streets, num avenues showing
+0 0 6 13
+# intersection size (in pixels)
+38
+# things
+
+   becker.robots.Thing 3 1
+   becker.robots.Thing 1 2
+   becker.robots.Thing 2 2
+   becker.robots.Thing 3 2
+
+   becker.robots.Thing 1 3
+   becker.robots.Thing 2 3
+
+   becker.robots.Thing 2 5
+   becker.robots.Thing 1 6
+   becker.robots.Thing 2 6
+
+   becker.robots.Thing 1 7
+
+   becker.robots.Thing 1 9
+   becker.robots.Thing 2 9
+   becker.robots.Thing 2 10
+
+   becker.robots.Thing 0 11
+
+# wall
+   becker.robots.Wall 1 1 Direction.WEST
+   becker.robots.Wall 2 1 Direction.WEST
+   becker.robots.Wall 3 1 Direction.WEST
+
+   becker.robots.Wall 1 3 Direction.WEST
+   becker.robots.Wall 2 3 Direction.WEST
+   becker.robots.Wall 3 3 Direction.WEST
+
+   becker.robots.Wall 1 5 Direction.WEST
+   becker.robots.Wall 2 5 Direction.WEST
+   becker.robots.Wall 3 5 Direction.WEST
+
+   becker.robots.Wall 1 7 Direction.WEST
+   becker.robots.Wall 2 7 Direction.WEST
+   becker.robots.Wall 3 7 Direction.WEST
+
+   becker.robots.Wall 1 9 Direction.WEST
+   becker.robots.Wall 2 9 Direction.WEST
+   becker.robots.Wall 3 9 Direction.WEST
+
+   becker.robots.Wall 1 11 Direction.WEST
+   becker.robots.Wall 2 11 Direction.WEST
+   becker.robots.Wall 3 11 Direction.WEST
