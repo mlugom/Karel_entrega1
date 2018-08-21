@@ -12,6 +12,7 @@ public class Ejercicio1{
   public static Robot estudiante;
 
 	public static void main (String[] args){
+
     //Declarar la creacion de la ciudad
     ciudad = new City("Field.txt");
     ciudad.showThingCounts(true);
@@ -30,6 +31,7 @@ public class Ejercicio1{
     }else{
       revisa_arreglo(arr_inicial, bool_num); //Si no es un numeral se imprime la letra correspondiente
     }
+
     bool_fin = mover_entre_cajones(bool_fin); //Se determina si la palabre es de sólo una letra
 
     while(!bool_fin){ //Se ejecuta hasta que encuentra un Thing en la posición de fin
@@ -67,10 +69,10 @@ public class Ejercicio1{
     return bool_fin;
   }
   public static void revisa_arreglo(boolean[] arr_Things, boolean bool_num){
-    boolean[][] matrix_letras = new boolean[][]{
+    boolean matrix_letras[][] = new boolean[][]{
       {true, false, false, false, false, false}, //a
       {true, true, false, false, false, false}, //b
-      {true, false, false, true, false, false}, //c
+      {true, false, false, false, false, true}, //c
       {true, false, false, false, true, true}, //d
       {true, false, false, false, true, false}, //e
       {true, true, false, false, false, true}, //f
@@ -117,92 +119,99 @@ public class Ejercicio1{
       {false, true, true, true, false, false}, //8
       {false, false, true, false, true, false}, //9
     };
+
     int pos_letra = 0;
     if(!bool_num){ //Si la palabra no inició con el numeral se imprime una letra
       for(int ii=0; ii<=25; ii++){
-        if(arr_Things == matrix_letras[ii]){ //Revisa en el arreglo si la letra que leyó el robot coincide
+        boolean bool_letra = true;
+        for(int jj=0; jj<=5; jj++){ //Revisa si todos los elementos de una fila de la matriz coinciden con todos los elementos del arreglo que "retornó el robot" (Son la misma letra)
+          if(arr_Things[jj] != matrix_letras[ii][jj]){
+            bool_letra = false;
+          }
+        }
+        if(bool_letra){ //Solo si todos los elementos de la fila son iguales se podrá ejecutar éste condicional
           pos_letra = ii;
           break;
         }
       }
       switch(pos_letra){
         case 0:
-          System.out.println('a');
+          System.out.print('a');
           break;
         case 1:
-          System.out.println('b');
+          System.out.print('b');
           break;
         case 2:
-          System.out.println('c');
+          System.out.print('c');
           break;
         case 3:
-          System.out.println('d');
+          System.out.print('d');
           break;
         case 4:
-          System.out.println('e');
+          System.out.print('e');
           break;
         case 5:
-          System.out.println('f');
+          System.out.print('f');
           break;
         case 6:
-          System.out.println('g');
+          System.out.print('g');
           break;
         case 7:
-          System.out.println('h');
+          System.out.print('h');
           break;
         case 8:
-          System.out.println('i');
+          System.out.print('i');
           break;
         case 9:
-          System.out.println('j');
+          System.out.print('j');
           break;
         case 10:
-          System.out.println('k');
+          System.out.print('k');
           break;
         case 11:
-          System.out.println('l');
+          System.out.print('l');
           break;
         case 12:
-          System.out.println('m');
+          System.out.print('m');
           break;
         case 13:
-          System.out.println('n');
+          System.out.print('n');
           break;
         case 14:
-          System.out.println('o');
+          System.out.print('o');
           break;
         case 15:
-          System.out.println('p');
+          System.out.print('p');
           break;
         case 16:
-          System.out.println('q');
+          System.out.print('q');
           break;
         case 17:
-          System.out.println('r');
+          System.out.print('r');
           break;
         case 18:
-          System.out.println('s');
+          System.out.print('s');
           break;
         case 19:
-          System.out.println('t');
+          System.out.print('t');
           break;
         case 20:
-          System.out.println('u');
+          System.out.print('u');
           break;
         case 21:
-          System.out.println('v');
+          System.out.print('v');
           break;
         case 22:
-          System.out.println('w');
+          System.out.print('w');
           break;
         case 23:
-          System.out.println('x');
+          System.out.print('x');
           break;
         case 24:
-          System.out.println('y');
+          System.out.print('y');
           break;
         case 25:
-          System.out.println('z');
+          System.out.print('z');
           break;
       }
     }
@@ -218,67 +227,67 @@ public class Ejercicio1{
           //Si es el numeral no hay necesidad de imprimir nada
           break;
         case 27:
-          System.out.println('0');
+          System.out.print('0');
           break;
         case 28:
-          System.out.println('1');
+          System.out.print('1');
           break;
         case 29:
-          System.out.println('2');
+          System.out.print('2');
           break;
         case 30:
-          System.out.println('3');
+          System.out.print('3');
           break;
         case 31:
-          System.out.println('4');
+          System.out.print('4');
           break;
         case 32:
-          System.out.println('5');
+          System.out.print('5');
           break;
         case 33:
-          System.out.println('6');
+          System.out.print('6');
           break;
         case 34:
-          System.out.println('7');
+          System.out.print('7');
           break;
         case 35:
-          System.out.println('8');
+          System.out.print('8');
           break;
         case 36:
-          System.out.println('9');
+          System.out.print('9');
           break;
         case 37:
           //Si es el numeral no hay necesidad de imprimir nada
           break;
         case 38:
-          System.out.println('0');
+          System.out.print('0');
           break;
         case 39:
-          System.out.println('1');
+          System.out.print('1');
           break;
         case 40:
-          System.out.println('2');
+          System.out.print('2');
           break;
         case 41:
-          System.out.println('3');
+          System.out.print('3');
           break;
         case 42:
-          System.out.println('4');
+          System.out.print('4');
           break;
         case 43:
-          System.out.println('5');
+          System.out.print('5');
           break;
         case 44:
-          System.out.println('6');
+          System.out.print('6');
           break;
         case 45:
-          System.out.println('7');
+          System.out.print('7');
           break;
         case 46:
-          System.out.println('8');
+          System.out.print('8');
           break;
         case 47:
-          System.out.println('9');
+          System.out.print('9');
           break;
       }
     }
