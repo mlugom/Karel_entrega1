@@ -24,18 +24,14 @@ public class Ejercicio1{
     boolean bool_fin = false;
     boolean bool_num = false;
 
-    boolean[] arr_inicial = new boolean[6]; //Se hace el movimiento del primer cajón aparte para ver si se leerá un número o una palabra
-    arr_inicial = mover_en_cajon();
-    if(arr_inicial == arr_numeral()){ //Si la primera letra es un numeral
-      bool_num = true;
-    }else{
-      revisa_arreglo(arr_inicial, bool_num); //Si no es un numeral se imprime la letra correspondiente
-    }
-
-    bool_fin = mover_entre_cajones(bool_fin); //Se determina si la palabre es de sólo una letra
+    boolean[] arr_temp = new boolean[6]; //Se hace el movimiento del primer cajón aparte para ver si se leerá un número o una palabra
 
     while(!bool_fin){ //Se ejecuta hasta que encuentra un Thing en la posición de fin
-      revisa_arreglo(mover_en_cajon(), bool_num);
+      arr_temp = mover_en_cajon();
+      if(is_arr_numeral(arr_temp)){ //Si aparece un numeral, todo lo siguiente que aparezca será considerado número
+        bool_num = true;
+      }
+      revisa_arreglo(arr_temp, bool_num);
       bool_fin = mover_entre_cajones(bool_fin);
     }
 
@@ -107,7 +103,7 @@ public class Ejercicio1{
       {true, true, false, false, true, true}, //7
       {true, true, false, false, true, false}, //8
       {false, true, false, false, false, true}, //9
-      {true, true, true, true, true, true}, //# //Nemeth Code
+      {false, false, true, true, true, true}, //# //Nemeth Code
       {false, false, true, true, true, false}, //0
       {false, true, false, false, false, false}, //1
       {false, true, true, false, false, false}, //2
@@ -217,7 +213,13 @@ public class Ejercicio1{
     }
     if(bool_num){ //La palabra inicia con el numeral, por lo que se imprimirá un número
       for(int ii=26; ii<=47; ii++){
-        if(arr_Things == matrix_letras[ii]){ //Revisa en el arreglo si la letra que leyó el robot coincide
+        boolean bool_letra = true;
+        for(int jj=0; jj<=5; jj++){ //Revisa si todos los elementos de una fila de la matriz coinciden con todos los elementos del arreglo que "retornó el robot" (Son la misma letra)
+          if(arr_Things[jj] != matrix_letras[ii][jj]){
+            bool_letra = false;
+          }
+        }
+        if(bool_letra){ //Solo si todos los elementos de la fila son iguales se podrá ejecutar éste condicional
           pos_letra = ii;
           break;
         }
@@ -292,8 +294,14 @@ public class Ejercicio1{
       }
     }
   }
-  public static boolean[] arr_numeral(){
-    boolean arr_numeral[] = {true, true, true, true, true, true};
-    return arr_numeral;
+  public static boolean is_arr_numeral(boolean[] arr_Things){
+    boolean[] arr_numeral = {false, false, true, true, true, true};
+    boolean bool_is_numeral = true;
+    for(int ii=0; ii<=5; ii++){
+      if(arr_Things[ii] != arr_numeral[ii]){
+        bool_is_numeral = false;
+      }
+    }
+    return bool_is_numeral;
   }
 }
