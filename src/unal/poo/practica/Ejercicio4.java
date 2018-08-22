@@ -14,7 +14,7 @@ public class Ejercicio4
         
 	public static void main (String[] args){
             //Declarar la creacion de la ciudad
-            objetos = new City("Field.txt");
+            objetos = new City("Field_ejer4.txt");
 	    objetos.showThingCounts(true);
             
             //Direction.NORTH, EAST, SOUTH, WEST
@@ -179,134 +179,144 @@ public class Ejercicio4
         }
         public static int pdigito, sdigito, tdigito;
         public static void comparar(int n){
-            boolean comprobante = false;
+            boolean matriz_comprobante[][] = new boolean[5][3];
+            boolean comprobante = true;
             switch(n){
                 case 1:
                     for(int i = 0; i < 5; i++){
                         for(int j = 0; j < 3; j++){
-                            if(matriz1[i][j] != cero[i][j]){
-                                comprobante = false;
-                                break;
-                            }else{
-                                comprobante = true;
-                            }
+                            matriz_comprobante[i][j] = matriz1[i][j] == cero[i][j];
+                        }
+                    }
+                    for(int i = 0; i < 5; i++){
+                        for(int j = 0; j < 3; j++){
+                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                         }
                     }
                     if(comprobante){
                         pdigito = 0;
                     }else{
+                        comprobante = true;
                         for(int i = 0; i < 5; i++){
                             for(int j = 0; j < 3; j++){
-                                if(matriz1[i][j] != uno[i][j]){
-                                    comprobante = false;
-                                    break;
-                                }else{
-                                    comprobante = true;
-                                }
+                                matriz_comprobante[i][j] = matriz1[i][j] == uno[i][j];
+                            }
+                        }
+                        for(int i = 0; i < 5; i++){
+                            for(int j = 0; j < 3; j++){
+                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                             }
                         }
                         if(comprobante){
                             pdigito = 1;
                         }else{
+                            comprobante = true;
                             for(int i = 0; i < 5; i++){
                                 for(int j = 0; j < 3; j++){
-                                    if(matriz1[i][j] != dos[i][j]){
-                                        comprobante = false;
-                                        break;
-                                    }else{
-                                        comprobante = true;
-                                    }
+                                    matriz_comprobante[i][j] = matriz1[i][j] == dos[i][j];
                                 }
                             }
+                            for(int i = 0; i < 5; i++){
+                                for(int j = 0; j < 3; j++){
+                                    comprobante = (matriz_comprobante[i][j] == true) && comprobante;
+                                }
+                            }                            
                             if(comprobante){
                                 pdigito = 2;
                             }else{
+                                comprobante = true;
                                 for(int i = 0; i < 5; i++){
                                     for(int j = 0; j < 3; j++){
-                                        if(matriz1[i][j] != tres[i][j]){
-                                            comprobante = false;
-                                            break;
-                                        }else{
-                                            comprobante = true;
-                                        }
+                                        matriz_comprobante[i][j] = matriz1[i][j] == tres[i][j];
+                                    }
+                                }
+                                for(int i = 0; i < 5; i++){
+                                    for(int j = 0; j < 3; j++){
+                                        comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                     }
                                 }
                                 if(comprobante){
                                     pdigito = 3;
                                 }else{
+                                    comprobante = true;
                                     for(int i = 0; i < 5; i++){
                                         for(int j = 0; j < 3; j++){
-                                            if(matriz1[i][j] != cuatro[i][j]){
-                                                comprobante = false;
-                                                break;
-                                            }else{
-                                                comprobante = true;
-                                            }
+                                            matriz_comprobante[i][j] = matriz1[i][j] == cuatro[i][j];
+                                        }
+                                    }
+                                    for(int i = 0; i < 5; i++){
+                                        for(int j = 0; j < 3; j++){
+                                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                         }
                                     }
                                     if(comprobante){
                                         pdigito = 4;
                                     }else{
+                                        comprobante = true;
                                         for(int i = 0; i < 5; i++){
                                             for(int j = 0; j < 3; j++){
-                                                if(matriz1[i][j] != cinco[i][j]){
-                                                    comprobante = false;
-                                                    break;
-                                                }else{
-                                                    comprobante = true;
-                                                }
+                                                matriz_comprobante[i][j] = matriz1[i][j] == cinco[i][j];
+                                            }
+                                        }
+                                        for(int i = 0; i < 5; i++){
+                                            for(int j = 0; j < 3; j++){
+                                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                             }
                                         }
                                         if(comprobante){
                                             pdigito = 5;
                                         }else{
+                                            comprobante = true;
                                             for(int i = 0; i < 5; i++){
                                                 for(int j = 0; j < 3; j++){
-                                                    if(matriz1[i][j] != seis[i][j]){
-                                                        comprobante = false;
-                                                        break;
-                                                    }else{
-                                                        comprobante = true;
-                                                    }
+                                                    matriz_comprobante[i][j] = matriz1[i][j] == seis[i][j];
+                                                }
+                                            }
+                                            for(int i = 0; i < 5; i++){
+                                                for(int j = 0; j < 3; j++){
+                                                    comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                 }
                                             }
                                             if(comprobante){
                                                 pdigito = 6;
                                             }else{
+                                                comprobante = true;
                                                 for(int i = 0; i < 5; i++){
                                                     for(int j = 0; j < 3; j++){
-                                                        if(matriz1[i][j] != siete[i][j]){
-                                                            comprobante = false;
-                                                            break;
-                                                        }else{
-                                                            comprobante = true;
-                                                        }
+                                                        matriz_comprobante[i][j] = matriz1[i][j] == siete[i][j];
+                                                    }
+                                                }
+                                                for(int i = 0; i < 5; i++){
+                                                    for(int j = 0; j < 3; j++){
+                                                        comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                     }
                                                 }
                                                 if(comprobante){
                                                     pdigito = 7;
                                                 }else{
+                                                    comprobante = true;
                                                     for(int i = 0; i < 5; i++){
                                                         for(int j = 0; j < 3; j++){
-                                                            if(matriz1[i][j] != ocho[i][j]){
-                                                                comprobante = false;
-                                                                break;
-                                                            }else{
-                                                                comprobante = true;
-                                                            }
+                                                            matriz_comprobante[i][j] = matriz1[i][j] == ocho[i][j];
+                                                        }
+                                                    }
+                                                    for(int i = 0; i < 5; i++){
+                                                        for(int j = 0; j < 3; j++){
+                                                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                         }
                                                     }
                                                     if(comprobante){
                                                         pdigito = 8;
                                                     }else{
+                                                        comprobante = true;
                                                         for(int i = 0; i < 5; i++){
                                                             for(int j = 0; j < 3; j++){
-                                                                if(matriz1[i][j] != nueve[i][j]){
-                                                                    comprobante = false;
-                                                                    break;
-                                                                }else{
-                                                                    comprobante = true;
-                                                                }
+                                                                matriz_comprobante[i][j] = matriz1[i][j] == nueve[i][j];
+                                                            }
+                                                        }
+                                                        for(int i = 0; i < 5; i++){
+                                                            for(int j = 0; j < 3; j++){
+                                                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                             }
                                                         }
                                                         if(comprobante){
@@ -314,139 +324,149 @@ public class Ejercicio4
                                                         }
                                                     }
                                                 }
-                                            }       
-                                        }           
-                                    }             
+                                            }
+                                        }       
+                                    }         
                                 }
-                            }         
+                            } 
                         }
                     }
+                    break;
                 case 2:
                     for(int i = 0; i < 5; i++){
                         for(int j = 0; j < 3; j++){
-                            if(matriz2[i][j] != cero[i][j]){
-                                comprobante = false;
-                                break;
-                            }else{
-                                comprobante = true;
-                            }
+                            matriz_comprobante[i][j] = matriz2[i][j] == cero[i][j];
+                        }
+                    }
+                    for(int i = 0; i < 5; i++){
+                        for(int j = 0; j < 3; j++){
+                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                         }
                     }
                     if(comprobante){
                         sdigito = 0;
                     }else{
+                        comprobante = true;
                         for(int i = 0; i < 5; i++){
                             for(int j = 0; j < 3; j++){
-                                if(matriz2[i][j] != uno[i][j]){
-                                    comprobante = false;
-                                    break;
-                                }else{
-                                    comprobante = true;
-                                }
+                                matriz_comprobante[i][j] = matriz2[i][j] == uno[i][j];
+                            }
+                        }
+                        for(int i = 0; i < 5; i++){
+                            for(int j = 0; j < 3; j++){
+                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                             }
                         }
                         if(comprobante){
                             sdigito = 1;
                         }else{
+                            comprobante = true;
                             for(int i = 0; i < 5; i++){
                                 for(int j = 0; j < 3; j++){
-                                    if(matriz2[i][j] != dos[i][j]){
-                                        comprobante = false;
-                                        break;
-                                    }else{
-                                        comprobante = true;
-                                    }
+                                    matriz_comprobante[i][j] = matriz2[i][j] == dos[i][j];
                                 }
                             }
+                            for(int i = 0; i < 5; i++){
+                                for(int j = 0; j < 3; j++){
+                                    comprobante = (matriz_comprobante[i][j] == true) && comprobante;
+                                }
+                            }                            
                             if(comprobante){
                                 sdigito = 2;
                             }else{
+                                comprobante = true;
                                 for(int i = 0; i < 5; i++){
                                     for(int j = 0; j < 3; j++){
-                                        if(matriz2[i][j] != tres[i][j]){
-                                            comprobante = false;
-                                            break;
-                                        }else{
-                                            comprobante = true;
-                                        }
+                                        matriz_comprobante[i][j] = matriz2[i][j] == tres[i][j];
+                                    }
+                                }
+                                for(int i = 0; i < 5; i++){
+                                    for(int j = 0; j < 3; j++){
+                                        comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                     }
                                 }
                                 if(comprobante){
                                     sdigito = 3;
                                 }else{
+                                    comprobante = true;
                                     for(int i = 0; i < 5; i++){
                                         for(int j = 0; j < 3; j++){
-                                            if(matriz2[i][j] != cuatro[i][j]){
-                                                comprobante = false;
-                                                break;
-                                            }else{
-                                                comprobante = true;
-                                            }
+                                            matriz_comprobante[i][j] = matriz2[i][j] == cuatro[i][j];
+                                        }
+                                    }
+                                    for(int i = 0; i < 5; i++){
+                                        for(int j = 0; j < 3; j++){
+                                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                         }
                                     }
                                     if(comprobante){
                                         sdigito = 4;
                                     }else{
+                                        comprobante = true;
                                         for(int i = 0; i < 5; i++){
                                             for(int j = 0; j < 3; j++){
-                                                if(matriz2[i][j] != cinco[i][j]){
-                                                    comprobante = false;
-                                                    break;
-                                                }else{
-                                                    comprobante = true;
-                                                }
+                                                matriz_comprobante[i][j] = matriz2[i][j] == cinco[i][j];
+                                            }
+                                        }
+                                        for(int i = 0; i < 5; i++){
+                                            for(int j = 0; j < 3; j++){
+                                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                             }
                                         }
                                         if(comprobante){
                                             sdigito = 5;
                                         }else{
+                                            comprobante = true;
                                             for(int i = 0; i < 5; i++){
                                                 for(int j = 0; j < 3; j++){
-                                                    if(matriz2[i][j] != seis[i][j]){
-                                                        comprobante = false;
-                                                        break;
-                                                    }else{
-                                                        comprobante = true;
-                                                    }
+                                                    matriz_comprobante[i][j] = matriz2[i][j] == seis[i][j];
+                                                }
+                                            }
+                                            for(int i = 0; i < 5; i++){
+                                                for(int j = 0; j < 3; j++){
+                                                    comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                 }
                                             }
                                             if(comprobante){
                                                 sdigito = 6;
                                             }else{
+                                                comprobante = true;
                                                 for(int i = 0; i < 5; i++){
                                                     for(int j = 0; j < 3; j++){
-                                                        if(matriz2[i][j] != siete[i][j]){
-                                                            comprobante = false;
-                                                            break;
-                                                        }else{
-                                                            comprobante = true;
-                                                        }
+                                                        matriz_comprobante[i][j] = matriz2[i][j] == siete[i][j];
+                                                    }
+                                                }
+                                                for(int i = 0; i < 5; i++){
+                                                    for(int j = 0; j < 3; j++){
+                                                        comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                     }
                                                 }
                                                 if(comprobante){
                                                     sdigito = 7;
                                                 }else{
+                                                    comprobante = true;
                                                     for(int i = 0; i < 5; i++){
                                                         for(int j = 0; j < 3; j++){
-                                                            if(matriz2[i][j] != ocho[i][j]){
-                                                                comprobante = false;
-                                                                break;
-                                                            }else{
-                                                                comprobante = true;
-                                                            }
+                                                            matriz_comprobante[i][j] = matriz2[i][j] == ocho[i][j];
+                                                        }
+                                                    }
+                                                    for(int i = 0; i < 5; i++){
+                                                        for(int j = 0; j < 3; j++){
+                                                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                         }
                                                     }
                                                     if(comprobante){
                                                         sdigito = 8;
                                                     }else{
+                                                        comprobante = true;
                                                         for(int i = 0; i < 5; i++){
                                                             for(int j = 0; j < 3; j++){
-                                                                if(matriz2[i][j] != nueve[i][j]){
-                                                                    comprobante = false;
-                                                                    break;
-                                                                }else{
-                                                                    comprobante = true;
-                                                                }
+                                                                matriz_comprobante[i][j] = matriz2[i][j] == nueve[i][j];
+                                                            }
+                                                        }
+                                                        for(int i = 0; i < 5; i++){
+                                                            for(int j = 0; j < 3; j++){
+                                                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                             }
                                                         }
                                                         if(comprobante){
@@ -454,139 +474,149 @@ public class Ejercicio4
                                                         }
                                                     }
                                                 }
-                                            }       
-                                        }           
-                                    }             
+                                            }
+                                        }       
+                                    }         
                                 }
-                            }         
+                            } 
                         }
                     }
+                    break;
                 case 3:
                     for(int i = 0; i < 5; i++){
                         for(int j = 0; j < 3; j++){
-                            if(matriz3[i][j] != cero[i][j]){
-                                comprobante = false;
-                                break;
-                            }else{
-                                comprobante = true;
-                            }
+                            matriz_comprobante[i][j] = matriz3[i][j] == cero[i][j];
+                        }
+                    }
+                    for(int i = 0; i < 5; i++){
+                        for(int j = 0; j < 3; j++){
+                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                         }
                     }
                     if(comprobante){
                         tdigito = 0;
                     }else{
+                        comprobante = true;
                         for(int i = 0; i < 5; i++){
                             for(int j = 0; j < 3; j++){
-                                if(matriz3[i][j] != uno[i][j]){
-                                    comprobante = false;
-                                    break;
-                                }else{
-                                    comprobante = true;
-                                }
+                                matriz_comprobante[i][j] = matriz3[i][j] == uno[i][j];
+                            }
+                        }
+                        for(int i = 0; i < 5; i++){
+                            for(int j = 0; j < 3; j++){
+                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                             }
                         }
                         if(comprobante){
                             tdigito = 1;
                         }else{
+                            comprobante = true;
                             for(int i = 0; i < 5; i++){
                                 for(int j = 0; j < 3; j++){
-                                    if(matriz3[i][j] != dos[i][j]){
-                                        comprobante = false;
-                                        break;
-                                    }else{
-                                        comprobante = true;
-                                    }
+                                    matriz_comprobante[i][j] = matriz3[i][j] == dos[i][j];
                                 }
                             }
+                            for(int i = 0; i < 5; i++){
+                                for(int j = 0; j < 3; j++){
+                                    comprobante = (matriz_comprobante[i][j] == true) && comprobante;
+                                }
+                            }                            
                             if(comprobante){
                                 tdigito = 2;
                             }else{
+                                comprobante = true;
                                 for(int i = 0; i < 5; i++){
                                     for(int j = 0; j < 3; j++){
-                                        if(matriz3[i][j] != tres[i][j]){
-                                            comprobante = false;
-                                            break;
-                                        }else{
-                                            comprobante = true;
-                                        }
+                                        matriz_comprobante[i][j] = matriz3[i][j] == tres[i][j];
+                                    }
+                                }
+                                for(int i = 0; i < 5; i++){
+                                    for(int j = 0; j < 3; j++){
+                                        comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                     }
                                 }
                                 if(comprobante){
                                     tdigito = 3;
                                 }else{
+                                    comprobante = true;
                                     for(int i = 0; i < 5; i++){
                                         for(int j = 0; j < 3; j++){
-                                            if(matriz3[i][j] != cuatro[i][j]){
-                                                comprobante = false;
-                                                break;
-                                            }else{
-                                                comprobante = true;
-                                            }
+                                            matriz_comprobante[i][j] = matriz3[i][j] == cuatro[i][j];
+                                        }
+                                    }
+                                    for(int i = 0; i < 5; i++){
+                                        for(int j = 0; j < 3; j++){
+                                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                         }
                                     }
                                     if(comprobante){
                                         tdigito = 4;
                                     }else{
+                                        comprobante = true;
                                         for(int i = 0; i < 5; i++){
                                             for(int j = 0; j < 3; j++){
-                                                if(matriz3[i][j] != cinco[i][j]){
-                                                    comprobante = false;
-                                                    break;
-                                                }else{
-                                                    comprobante = true;
-                                                }
+                                                matriz_comprobante[i][j] = matriz3[i][j] == cinco[i][j];
+                                            }
+                                        }
+                                        for(int i = 0; i < 5; i++){
+                                            for(int j = 0; j < 3; j++){
+                                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                             }
                                         }
                                         if(comprobante){
                                             tdigito = 5;
                                         }else{
+                                            comprobante = true;
                                             for(int i = 0; i < 5; i++){
                                                 for(int j = 0; j < 3; j++){
-                                                    if(matriz3[i][j] != seis[i][j]){
-                                                        comprobante = false;
-                                                        break;
-                                                    }else{
-                                                        comprobante = true;
-                                                    }
+                                                    matriz_comprobante[i][j] = matriz3[i][j] == seis[i][j];
+                                                }
+                                            }
+                                            for(int i = 0; i < 5; i++){
+                                                for(int j = 0; j < 3; j++){
+                                                    comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                 }
                                             }
                                             if(comprobante){
                                                 tdigito = 6;
                                             }else{
+                                                comprobante = true;
                                                 for(int i = 0; i < 5; i++){
                                                     for(int j = 0; j < 3; j++){
-                                                        if(matriz3[i][j] != siete[i][j]){
-                                                            comprobante = false;
-                                                            break;
-                                                        }else{
-                                                            comprobante = true;
-                                                        }
+                                                        matriz_comprobante[i][j] = matriz3[i][j] == siete[i][j];
+                                                    }
+                                                }
+                                                for(int i = 0; i < 5; i++){
+                                                    for(int j = 0; j < 3; j++){
+                                                        comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                     }
                                                 }
                                                 if(comprobante){
                                                     tdigito = 7;
                                                 }else{
+                                                    comprobante = true;
                                                     for(int i = 0; i < 5; i++){
                                                         for(int j = 0; j < 3; j++){
-                                                            if(matriz3[i][j] != ocho[i][j]){
-                                                                comprobante = false;
-                                                                break;
-                                                            }else{
-                                                                comprobante = true;
-                                                            }
+                                                            matriz_comprobante[i][j] = matriz3[i][j] == ocho[i][j];
+                                                        }
+                                                    }
+                                                    for(int i = 0; i < 5; i++){
+                                                        for(int j = 0; j < 3; j++){
+                                                            comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                         }
                                                     }
                                                     if(comprobante){
                                                         tdigito = 8;
                                                     }else{
+                                                        comprobante = true;
                                                         for(int i = 0; i < 5; i++){
                                                             for(int j = 0; j < 3; j++){
-                                                                if(matriz3[i][j] != nueve[i][j]){
-                                                                    comprobante = false;
-                                                                    break;
-                                                                }else{
-                                                                    comprobante = true;
-                                                                }
+                                                                matriz_comprobante[i][j] = matriz3[i][j] == nueve[i][j];
+                                                            }
+                                                        }
+                                                        for(int i = 0; i < 5; i++){
+                                                            for(int j = 0; j < 3; j++){
+                                                                comprobante = (matriz_comprobante[i][j] == true) && comprobante;
                                                             }
                                                         }
                                                         if(comprobante){
@@ -594,13 +624,14 @@ public class Ejercicio4
                                                         }
                                                     }
                                                 }
-                                            }       
-                                        }           
-                                    }             
+                                            }
+                                        }       
+                                    }         
                                 }
-                            }         
+                            } 
                         }
                     }
+                    break;
             }
         }
         public static void imprimir_numero(){
