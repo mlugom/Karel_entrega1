@@ -11,7 +11,6 @@ public class Ejercicio4
        //variables estaticas
         public static City objetos;
         public static Robot estudiante;
-        
 	public static void main (String[] args){
             //Declarar la creacion de la ciudad
             objetos = new City("Field_ejer4.txt");

@@ -3,6 +3,7 @@ hHarvest a Field
 0 0 9 11
 # intersection size (in pixels) 
 38
+
 # things
    becker.robots.Thing 1 1
    becker.robots.Thing 1 2
