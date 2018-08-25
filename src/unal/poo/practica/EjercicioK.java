@@ -79,7 +79,7 @@ public class EjercicioK
     }while(!estudiante.canPickThing());
     arrStreet = getStreetChange(arrStreet, qq);
     arrAvenue = getAvenueChange(arrAvenue, qq);
-    
+
     int[][] matrixTemp = new int[2][0];
     matrixTemp[0] = arrStreet;
     matrixTemp[1] = arrAvenue;
