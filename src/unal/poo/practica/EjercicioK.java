@@ -29,7 +29,6 @@ public class EjercicioK
     arrStreet = matrixTemp[0];
     arrAvenue = matrixTemp[1];
 
-
     int minStreet = getMin(arrStreet);
     int maxStreet = getMax(arrStreet);
 
@@ -42,7 +41,18 @@ public class EjercicioK
     maxAvenue -= minAvenue;
 
     boolean[][] matrixLote = crearMatrix(maxAvenue, maxStreet);
+
+    for(int ii=0; ii<=arrStreet.length-1; ii++){ //Imprime ARREGLOS
+      System.out.println(arrStreet[ii]+"\t"+arrAvenue[ii]);
+    }
+
     matrixLote = defineEspacios(matrixLote, arrAvenue, arrStreet);
+    for(int ii=0; ii<=matrixLote.length-1; ii++){ //IMPRESIÓN MATRIZ
+      for(int jj=0; jj<=matrixLote[0].length-1; jj++){
+        System.out.print(matrixLote[ii][jj]+"\t");
+      }
+      System.out.println();
+    }
     int mts2 = cuentaMetros(matrixLote);
 
     System.out.println("///////////////////////");
@@ -84,10 +94,6 @@ public class EjercicioK
     matrixTemp[0] = arrStreet;
     matrixTemp[1] = arrAvenue;
 
-    for(int ii=0; ii<=arrStreet.length-1; ii++){
-      System.out.println(arrStreet[ii]+"\t"+arrAvenue[ii]);
-    }
-
     return matrixTemp;
   }
   public static int[] getStreetChange(int[] arrStreet, int ii){
@@ -119,13 +125,13 @@ public class EjercicioK
     return max;
   }
   public static int[] canonizarArr(int[] array, int min){
-    for(int ii=0; ii<=array.length; ii++){
+    for(int ii=0; ii<=array.length-1; ii++){
       array[ii] -= min;
     }
     return array;
   }
   public static boolean[][] crearMatrix(int maxAvenue, int maxStreet){
-    boolean[][] matrixLote = new boolean[maxAvenue][maxStreet];
+    boolean[][] matrixLote = new boolean[maxAvenue+1][maxStreet+1];
     for(int ii=0; ii<=maxAvenue; ii++){
       for(int jj=0; jj<=maxStreet; jj++){
         matrixLote[ii][jj] = true;
@@ -136,23 +142,18 @@ public class EjercicioK
   public static boolean[][] defineEspacios(boolean[][] matrixLote, int[] arrAvenue, int[] arrStreet){
     for(int ii=0; ii<=matrixLote.length-1; ii++){
       for(int jj=0; jj<=matrixLote[0].length-1; jj++){
-        boolean iiPerteneceArrAvenue = false;
-        boolean jjPerteneceArrStreet = false;
+        boolean iiPerteneceArrStreet = false;
+        boolean jjPerteneceArrAvenue = false;
         for(int kk=0; kk<=arrAvenue.length-1; kk++){
-          if(ii == arrAvenue[kk]){
-            iiPerteneceArrAvenue = true;
+          if(ii == arrStreet[kk] && jj == arrAvenue[kk]){
+            // iiPerteneceArrStreet = true;
+            // jjPerteneceArrAvenue = true;
+            matrixLote[ii][jj] = false;
             break;
           }
         }
-        for(int kk=0; kk<=arrStreet.length-1; kk++){
-          if(jj == arrStreet[kk]){
-            jjPerteneceArrStreet = true;
-            break;
-          }
-        }
-        if(iiPerteneceArrAvenue && jjPerteneceArrStreet){
-          matrixLote[ii][jj] = false;
-        }
+        // if(iiPerteneceArrStreet && jjPerteneceArrAvenue){
+        // }
       }
     }
     return matrixLote;
@@ -160,7 +161,7 @@ public class EjercicioK
   public static int cuentaMetros(boolean[][] matrixLote){
     int contTemp = 0;
     for(int ii=0; ii<=matrixLote.length-1; ii++){
-      for(int jj=0; jj<=matrixLote[0].length; jj++){
+      for(int jj=0; jj<=matrixLote[0].length-1; jj++){
         if(matrixLote[ii][jj] == true){
           contTemp++;
         }
