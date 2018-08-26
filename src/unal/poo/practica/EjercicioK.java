@@ -42,10 +42,6 @@ public class EjercicioK
 
     int[][] matrixLote = crearMatrix(maxAvenue, maxStreet);
 
-    for(int ii=0; ii<=arrStreet.length-1; ii++){ //Imprime ARREGLOS
-      System.out.println(arrStreet[ii]+"\t"+arrAvenue[ii]);
-    }
-
     matrixLote = defineEspacios(matrixLote, arrAvenue, arrStreet);
 
     int[][] matrixLoteSemi1 = new int[matrixLote.length][matrixLote[0].length];
@@ -56,28 +52,14 @@ public class EjercicioK
     matrixLoteSemi1 = filtroHorizontal(matrixLoteSemi1);
 
     matrixLoteSemi2 = transformacionMatriz(matrixLoteSemi2);
-
-    for(int ii=0; ii<=matrixLoteSemi2.length-1; ii++){ //IMPRESIÓN MATRIZ2 transformada no filtrada
-      for(int jj=0; jj<=matrixLoteSemi2[0].length-1; jj++){
-        System.out.print(matrixLoteSemi2[ii][jj]+"\t");
-      }
-      System.out.println();
-    }
-
     matrixLoteSemi2 = filtroHorizontal(matrixLoteSemi2);
-
-    System.out.println();
-    for(int ii=0; ii<=matrixLoteSemi2.length-1; ii++){ //IMPRESIÓN MATRIZ2 transformada y filtrada
-      for(int jj=0; jj<=matrixLoteSemi2[0].length-1; jj++){
-        System.out.print(matrixLoteSemi2[ii][jj]+"\t");
-      }
-      System.out.println();
+    for(int ii=1; ii<=3; ii++){ //Se regresa la semimatriz a la orientación originial
+      matrixLoteSemi2 = transformacionMatriz(matrixLoteSemi2);
     }
 
+    matrixLote = intersectarMatrices(matrixLoteSemi1, matrixLoteSemi2);
 
     int mts2 = cuentaMetros(matrixLote);
-
-    System.out.println();
 
     System.out.println("///////////////////////");
     System.out.println("Área del Lote = "+mts2+" m2");
@@ -180,6 +162,19 @@ public class EjercicioK
       }
     }
     return matrixTransformada;
+  }
+  public static int[][] intersectarMatrices(int[][] matrixLoteSemi1, int[][] matrixLoteSemi2){
+    int[][] matrixInterseccion = new int[matrixLoteSemi1.length][matrixLoteSemi1[0].length];
+    for(int ii=0; ii<=matrixInterseccion.length-1; ii++){
+      for(int jj=0; jj<=matrixInterseccion[0].length-1; jj++){
+        if(matrixLoteSemi1[ii][jj]==1 && matrixLoteSemi2[ii][jj]==1){
+          matrixInterseccion[ii][jj] = 1;
+        }else{
+          matrixInterseccion[ii][jj] = 0;
+        }
+      }
+    }
+    return matrixInterseccion;
   }
   public static int[][] defineEspacios(int[][] matrixLote, int[] arrAvenue, int[] arrStreet){
     for(int ii=0; ii<=matrixLote.length-1; ii++){
@@ -287,26 +282,38 @@ public class EjercicioK
   }
 }
 
-// 0	0	0	1	1	1	1	1	0	0	0	
-// 0	1	0	0	1	1	1	0	0	1	0	
-// 0	1	1	0	0	1	0	0	1	1	0	
-// 0	1	1	1	0	0	0	1	1	1	0	
-// 0	0	1	1	1	0	1	1	1	0	0	
-// 1	0	0	1	1	1	1	1	0	0	0	
-// 0	0	0	0	1	1	1	1	0	1	0	
-// 0	1	1	1	1	1	1	1	1	1	0	
-// 0	1	1	1	1	0	0	1	1	1	0	
-// 0	1	0	0	0	0	0	0	0	1	0	
-// 0	0	0	1	1	1	1	1	0	0	0	
+// 0	0	0	0	0	1	3	0	0	0	0
+// 2	1	1	1	3	0	2	1	1	1	3
+// 0	2	1	1	3	2	1	1	1	3	0
+// 0	4	1	1	4	1	1	1	3	0	0
+// 0	4	1	1	1	1	1	3	0	0	0
+// 0	0	2	1	1	1	3	0	0	0	0
+// 0	0	2	1	1	1	1	3	0	0	0
+// 0	4	1	1	1	1	1	1	3	0	0
+// 0	2	1	1	3	2	1	1	1	3	0
+// 2	1	1	1	1	3	2	1	1	1	3
+// 0	0	0	0	0	0	0	0	0	0	0
 //
-// 0	0	2	1	1	1	1	1	3	0	0	
-// 2	1	3	2	1	1	1	3	0	1	3	
-// 2	1	1	3	0	1	3	2	1	1	3	
-// 2	1	1	1	3	0	2	1	1	1	3	
-// 0	2	1	1	1	4	1	1	1	3	0	
-// 0	0	2	1	1	1	1	1	3	0	0	
-// 0	0	0	2	1	1	1	1	4	1	3	
-// 2	1	1	1	1	1	1	1	1	1	3	
-// 2	1	1	1	1	3	2	1	1	1	3	
-// 2	1	3	0	0	0	0	0	0	1	3	
-// 0	0	2	1	1	1	1	1	3	0	0	
+// 0	2	2	2	0	0	0	2	2	2	0
+// 0	1	1	1	0	0	2	1	1	1	0
+// 2	3	1	1	0	2	1	1	1	3	2
+// 1	0	1	1	2	1	1	1	3	2	1
+// 1	0	1	1	1	1	1	3	0	1	1
+// 1	0	3	1	1	1	4	0	1	1	1
+// 1	0	2	1	1	1	1	2	3	1	1
+// 1	0	1	1	1	1	1	1	2	3	1
+// 3	0	1	1	4	3	1	1	1	0	3
+// 0	1	1	1	1	0	3	1	1	1	0
+// 0	3	3	3	3	0	0	3	3	3	0
+//
+// 0	0	0	0	0	0	0	0	0	0	0
+// 0	1	1	1	0	0	0	1	1	1	0
+// 0	0	1	1	0	0	1	1	1	0	0
+// 0	0	1	1	0	1	1	1	0	0	0
+// 0	0	1	1	1	1	1	0	0	0	0
+// 0	0	0	1	1	1	0	0	0	0	0
+// 0	0	0	1	1	1	1	0	0	0	0
+// 0	0	1	1	1	1	1	1	0	0	0
+// 0	0	1	1	0	0	1	1	1	0	0
+// 0	1	1	1	1	0	0	1	1	1	0
+// 0	0	0	0	0	0	0	0	0	0	0
