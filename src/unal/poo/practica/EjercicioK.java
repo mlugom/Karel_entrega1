@@ -47,40 +47,50 @@ public class EjercicioK
     }
 
     matrixLote = defineEspacios(matrixLote, arrAvenue, arrStreet);
-    for(int ii=0; ii<=matrixLote.length-1; ii++){ //IMPRESIÓN MATRIZ
-      for(int jj=0; jj<=matrixLote[0].length-1; jj++){
-        System.out.print(matrixLote[ii][jj]+"\t");
+
+    int[][] matrixLoteSemi1 = new int[matrixLote.length][matrixLote[0].length];
+    matrixLoteSemi1 = igualaMatrices(matrixLote, matrixLoteSemi1);
+    int[][] matrixLoteSemi2 = new int[matrixLote.length][matrixLote[0].length];
+    matrixLoteSemi2 = igualaMatrices(matrixLote, matrixLoteSemi2);
+
+    matrixLoteSemi1 = filtroHorizontal(matrixLoteSemi1);
+
+    matrixLoteSemi2 = transformacionMatriz(matrixLoteSemi2);
+
+    for(int ii=0; ii<=matrixLoteSemi2.length-1; ii++){ //IMPRESIÓN MATRIZ2 transformada no filtrada
+      for(int jj=0; jj<=matrixLoteSemi2[0].length-1; jj++){
+        System.out.print(matrixLoteSemi2[ii][jj]+"\t");
       }
       System.out.println();
     }
 
-    int[][] matrixLoteSemi1 = matrixLote;
-    int[][] matrixLoteSemi2 = matrixLote;
-    matrixLoteSemi1 = filtroHorizontal(matrixLoteSemi1);
-
-
-    matrixLoteSemi2 = transformacionMatriz(matrixLoteSemi2);
     matrixLoteSemi2 = filtroHorizontal(matrixLoteSemi2);
+
+    System.out.println();
+    for(int ii=0; ii<=matrixLoteSemi2.length-1; ii++){ //IMPRESIÓN MATRIZ2 transformada y filtrada
+      for(int jj=0; jj<=matrixLoteSemi2[0].length-1; jj++){
+        System.out.print(matrixLoteSemi2[ii][jj]+"\t");
+      }
+      System.out.println();
+    }
+
+
     int mts2 = cuentaMetros(matrixLote);
 
     System.out.println();
-    for(int ii=0; ii<=matrixLoteSemi1.length-1; ii++){ //IMPRESIÓN MATRIZ
-      for(int jj=0; jj<=matrixLoteSemi1[0].length-1; jj++){
-        System.out.print(matrixLoteSemi1[ii][jj]+"\t");
-      }
-      System.out.println();
-    }
-    // for(int ii=0; ii<=matrixLoteSemi2.length-1; ii++){ //IMPRESIÓN MATRIZ
-    //   for(int jj=0; jj<=matrixLoteSemi2[0].length-1; jj++){
-    //     System.out.print(matrixLoteSemi2[ii][jj]+"\t");
-    //   }
-    //   System.out.println();
-    // }
 
     System.out.println("///////////////////////");
     System.out.println("Área del Lote = "+mts2+" m2");
     System.out.println("///////////////////////");
 	}
+  public static int[][] igualaMatrices(int[][] matrix1, int[][]matrix2){
+    for(int ii=0; ii<=matrix1.length-1; ii++){
+      for(int jj=0; jj<=matrix1[0].length-1; jj++){
+        matrix2[ii][jj] = matrix1[ii][jj];
+      }
+    }
+    return matrix2;
+  }
   public static int[][] hacerRecorrido(int[] arrStreet, int[] arrAvenue){
     //Se hace esto por el simple hecho de que no se puede retornar cada array por separado
     boolean hubo_avance = false;
@@ -163,9 +173,10 @@ public class EjercicioK
   }
   public static int[][] transformacionMatriz(int[][] matrix){
     int[][] matrixTransformada = new int[matrix[0].length][matrix.length];
-    for(int ii=0; ii<=matrix.length-1; ii++){
-      for(int jj=0; jj<=matrix[0].length-1; jj++){
-        matrixTransformada[jj][ii] = matrix[ii][jj];
+
+    for(int ii=0; ii<=matrixTransformada.length-1; ii++){
+      for(int jj=0; jj<=matrixTransformada[0].length-1; jj++){
+        matrixTransformada[ii][jj] = matrix[jj][(matrixTransformada.length-1)-ii];
       }
     }
     return matrixTransformada;
@@ -181,9 +192,6 @@ public class EjercicioK
             break;
           }
         }
-        // if(ii == 0 || jj == 0){
-        //   matrixLote[ii][jj] = 0; //Los bordes del cuadro grande
-        // }
       }
     }
     return matrixLote;
@@ -191,8 +199,14 @@ public class EjercicioK
   public static int[][] filtroHorizontal(int[][] matrixLote){
 
     for(int ii=0; ii<=matrixLote.length-1; ii++){ //En este primer ciclo se definen los "pivotes" especiales
-      for(int jj=1; jj<=matrixLote[0].length-1; jj++){
-        if(jj < matrixLote[0].length-1){
+      for(int jj=0; jj<=matrixLote[0].length-1; jj++){
+        if(jj == 0){ //Los 2 que pueden estar en la primera columna de la matriz
+          if((matrixLote[ii][jj]==0) && (matrixLote[ii][jj+1]==1)){
+            matrixLote[ii][jj] = 2;
+          }
+        }
+        if((jj >= 1) && jj < (matrixLote[0].length-1)){
+
           if((matrixLote[ii][jj-1]==0 && matrixLote[ii][jj]==1) && !(matrixLote[ii][jj]==1 && matrixLote[ii][jj+1]==0)){ //Si hay 1DespuésDe0 y no hay 0DespuesDe1
             matrixLote[ii][jj-1] = 2;
           }
@@ -202,7 +216,9 @@ public class EjercicioK
           if((matrixLote[ii][jj-1]==1 && matrixLote[ii][jj]==0) && !(matrixLote[ii][jj]==0 && matrixLote[ii][jj+1]==1)){ //Si hay 0DespuesDe1 y no hay 1DespuesDe0
               matrixLote[ii][jj] = 3;
           }
-        }else{
+
+        }
+        if(jj == matrixLote[0].length-1){
           if((matrixLote[ii][jj-1]==1 && matrixLote[ii][jj]==0)){ //Los 3 que pueden estar en la última columna de la matriz
               matrixLote[ii][jj] = 3;
           }
@@ -240,14 +256,14 @@ public class EjercicioK
             }
           }
         }
-        // if(matrixLote[ii][jj] == 2 || matrixLote[ii][jj] == 4){
-        //   for(int kk=jj-1; matrixLote[ii][kk]!=3 && matrixLote[ii][kk]!=4; kk--){
-        //     matrixLote[ii][kk] = 0;
-        //     if(kk == 0){ //Si ya no hay qué más revisar
-        //       break;
-        //     }
-        //   }
-        // }
+        if((matrixLote[ii][jj] == 2 /*|| matrixLote[ii][jj] == 4*/) && jj>=1){
+          for(int kk=jj-1; matrixLote[ii][kk]!=3 /*&& matrixLote[ii][kk]!=4*/; kk--){
+            matrixLote[ii][kk] = 0;
+            if(kk == 0){ //Si ya no hay qué más revisar
+              break;
+            }
+          }
+        }
       }
     }
 
@@ -271,40 +287,26 @@ public class EjercicioK
   }
 }
 
-
-
-// 0	0	0	0	0	1	0	0	0	0	0
-// 0	1	1	1	0	0	0	1	1	1	0
-// 0	0	1	1	0	0	1	1	1	0	0
-// 1	0	1	1	0	1	1	1	0	0	1
-// 1	0	1	1	1	1	1	0	0	1	1
-// 1	0	0	1	1	1	0	0	1	1	1
-// 1	0	0	1	1	1	1	0	0	1	1
-// 1	0	1	1	1	1	1	1	0	0	1
-// 0	0	1	1	0	0	1	1	1	0	0
-// 0	1	1	1	1	0	0	1	1	1	0
-// 0	0	0	0	0	0	0	0	0	0	0
-
-// 0	0	0	0	0	1	3	0	0	0	0
-// 2	1	1	1	3	0	2	1	1	1	3
-// 0	2	1	1	3	2	1	1	1	3	0
-// 0	4	1	1	4	1	1	1	3	0	0
-// 0	4	1	1	1	1	1	3	0	0	0
-// 0	0	2	1	1	1	3	0	0	0	0
-// 0	0	2	1	1	1	1	3	0	0	0
-// 0	4	1	1	1	1	1	1	3	0	0
-// 0	2	1	1	3	2	1	1	1	3	0
-// 2	1	1	1	1	3	2	1	1	1	3
-// 0	0	0	0	0	0	0	0	0	0	0
-
-// 0	2	0	0	0	0	0	0	0	2	0
-// 2	1	2	4	4	0	0	4	2	1	3
-// 2	1	1	1	1	2	2	1	1	1	3
-// 2	1	1	1	1	1	1	1	1	1	3
-// 0	0	0	4	1	1	1	1	3	1	3
-// 0	0	2	1	1	1	1	1	2	3	0
-// 0	2	1	1	1	3	0	0	0	0	0
-// 2	1	1	1	3	0	3	1	1	1	3
-// 2	1	1	3	0	0	0	3	1	1	3
-// 2	1	3	0	0	0	0	0	3	1	3
-// 0	3	0	0	0	0	0	0	0	3	0
+// 0	0	0	1	1	1	1	1	0	0	0	
+// 0	1	0	0	1	1	1	0	0	1	0	
+// 0	1	1	0	0	1	0	0	1	1	0	
+// 0	1	1	1	0	0	0	1	1	1	0	
+// 0	0	1	1	1	0	1	1	1	0	0	
+// 1	0	0	1	1	1	1	1	0	0	0	
+// 0	0	0	0	1	1	1	1	0	1	0	
+// 0	1	1	1	1	1	1	1	1	1	0	
+// 0	1	1	1	1	0	0	1	1	1	0	
+// 0	1	0	0	0	0	0	0	0	1	0	
+// 0	0	0	1	1	1	1	1	0	0	0	
+//
+// 0	0	2	1	1	1	1	1	3	0	0	
+// 2	1	3	2	1	1	1	3	0	1	3	
+// 2	1	1	3	0	1	3	2	1	1	3	
+// 2	1	1	1	3	0	2	1	1	1	3	
+// 0	2	1	1	1	4	1	1	1	3	0	
+// 0	0	2	1	1	1	1	1	3	0	0	
+// 0	0	0	2	1	1	1	1	4	1	3	
+// 2	1	1	1	1	1	1	1	1	1	3	
+// 2	1	1	1	1	3	2	1	1	1	3	
+// 2	1	3	0	0	0	0	0	0	1	3	
+// 0	0	2	1	1	1	1	1	3	0	0	
