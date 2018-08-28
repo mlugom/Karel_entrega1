@@ -14,7 +14,7 @@ public class EjercicioK
 
 	public static void main (String[] args){
     //Declarar la creacion de la ciudad
-    objetos = new City("Field_6.txt");
+    objetos = new City("Field_7.txt");
     objetos.showThingCounts(true);
 
     //Direction.NORTH, EAST, SOUTH, WEST
