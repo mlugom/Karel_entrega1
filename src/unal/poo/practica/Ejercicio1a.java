@@ -1,10 +1,10 @@
-//En este programa, el robot Karel deberá o bien traducir braile (distribución de Things en la pantalla) a texto, o bien traducir texto a braile disponiendo los Things de una manera específica
+//En este programa, el robot Karel deberá traducir braile (con los Things distribuidos en la ciudad) a texto
 
 package unal.poo.practica;
 
 import becker.robots.*;
 
-public class Ejercicio1{
+public class Ejercicio1a{
 
   //Declaracion de Variables -- Forma temporal - No es buena practica tener
   //variables estaticas
@@ -14,7 +14,7 @@ public class Ejercicio1{
 	public static void main (String[] args){
 
     //Declarar la creacion de la ciudad
-    ciudad = new City("Field.txt");
+    ciudad = new City("Field_ejer1a(1).txt");
     ciudad.showThingCounts(true);
 
     //Direction.NORTH, EAST, SOUTH, WEST
