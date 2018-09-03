@@ -1,3 +1,4 @@
+//En este programa, Karel lee numeros en display de siete segmentos y los imprime en pantalla
 package unal.poo.practica;
 
 import becker.robots.*;
